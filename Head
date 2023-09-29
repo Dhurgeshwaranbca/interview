@@ -1,0 +1,169 @@
+package LM;
+import java.util.Scanner;
+
+public class Head {
+	static int blen = 0;
+	static int stulen = 0;
+	static int getBookCount = 0;
+	static int x = 0;
+	static String nn;
+	static String students [][] = new String[2][100];
+	static String Books[] = new String[100];
+	static String SoldBooks[] = new String[100];
+	static void show()
+	{
+		System.out.println("");
+		System.out.println("------------------------------------------");
+		System.out.println("Enter 1 for Add Boox");
+		System.out.println("Enter 2 for Register as Student");
+		System.out.println("Emter 3 for Get Book");
+		System.out.println("Enter 4 for return Book");
+		System.out.println("Enter 5 for Get Books Details");
+		
+	}
+	static int getInput()
+	{
+		show();
+		System.out.print("Enter a Value Here ");
+		Scanner scanner = new Scanner(System.in);
+		int inp = scanner.nextInt();
+
+		//scanner.close();
+		return inp;
+		
+	}
+	static void addBook()
+	{
+		System.out.println("------------------------------------------");
+		System.out.print("Enter a Book Name Here ");
+		Scanner scanner = new Scanner(System.in);
+		String book = scanner.nextLine();
+		
+		Books[blen] = book; 
+		System.out.println("Your Book is added Successfully..");
+		System.out.println(Books[blen]);
+		blen++;
+		
+	}
+	static void getBook()
+	{
+		System.out.print("Enter a Book Name Here ");
+		Scanner scanner = new Scanner(System.in);
+		String book = scanner.nextLine();
+		getBookCount++;
+		
+		for(int i = 0; i<Books.length;i++)
+		{
+			String n = Books[i];
+			if(n.equals(book))
+			{
+				SoldBooks[x] = book;
+				Books[i] = "";
+				System.out.println("This your Book");
+				System.out.println(SoldBooks[x]);
+				x--;
+				return;
+			}
+		}
+		
+		System.out.println("Enter valid Book Name or check Spelling");
+		
+	}
+	static void studentReg()
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter a Name Here.. ");
+		String Name = scanner.nextLine();
+		System.out.print("Enter a RegNo Here.. ");
+		String RegNo = scanner.nextLine();
+		stulen++;
+		students[0][stulen] = Name;
+		students[1][stulen] = RegNo;
+		System.out.println("");
+		System.out.println("Hi " + Name + "  Now your Member in this Library");
+		
+	}
+	static void returnBook()
+	{
+		System.out.print("Enter a Book Name Here ");
+		Scanner scanner = new Scanner(System.in);
+		String book = scanner.nextLine();
+		Books[x] = book;
+//		for(int i = 0; i<SoldBooks.length;i++)
+//		{
+//			
+//			System.out.println(SoldBooks[x]);
+//			String nn = SoldBooks[x];
+//			if(nn.equals(book))
+//			{
+//				System.out.println("Thanks For returning..");
+//				SoldBooks[i] = "";
+//				return;
+//			}
+//			
+//		}
+		//System.out.println("Enter valid Book Name or check Spelling");
+		
+	}
+	static void showBooks() {
+		System.out.println("Enter 1 for Available Books");
+		System.out.println("ENter 2 for get Sold Books");
+		System.out.print("Enter a Value Here ");
+		
+		Scanner scanner = new Scanner(System.in);
+		int inp = scanner.nextInt();
+		if(inp == 1)
+		{
+			for(int i = 0; i<Books.length;i++)
+			{
+				if(Books[i] == null)
+				{
+					break;
+				}
+				System.out.println(Books[i]);
+			}
+		}
+		else if(inp == 2)
+		{
+			for(int i = 0; i<SoldBooks.length;i++)
+			{
+				if(SoldBooks[i] == null)
+				{
+					break;
+				}
+				System.out.println(SoldBooks[i]);
+			}
+		}
+		
+	}
+	public static void main(String[] args) 
+	{
+		while(true) {
+			int input = getInput();
+			
+			switch(input) {
+				case(1):
+					addBook();
+					break;
+				case(2):
+					studentReg();
+					break;
+				case(3):
+					getBook();
+					break;
+				case(4):
+					returnBook();
+					break;
+				case(5):
+					showBooks();
+					break;
+				
+			}
+			}
+			//Head h = new Head();
+
+			
+		}
+			
+
+	}
